@@ -22,6 +22,7 @@
         <script src="https://cdn.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
         <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
         <script src="https://cdn.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
+        <script src="./js/babylon.objFileLoader.js"></script>
 
         <style>
             html, body {
@@ -89,9 +90,8 @@
     // groundMaterial.diffuseTexture = groundTexture;
     // ground.material = groundMaterial;
 
-    BABYLON.SceneLoader.ImportMesh("", "./dev/", "Monarch_butterfly.glb", scene, function(newMeshes){
+    BABYLON.SceneLoader.ImportMesh("", "./dev/", "Wooden chair.obj", scene, function(newMeshes){
     newMeshes[0].scaling = new BABYLON.Vector3(0.1, 0.1, 0.1);        
-    
     });
 
     return scene;
