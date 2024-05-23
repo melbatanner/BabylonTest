@@ -23,6 +23,7 @@
         <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
         <script src="https://cdn.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
         <script src="./js/babylon.objFileLoader.js"></script>
+        <script src="./js/babylon.stlFileLoader.js"></script>
 
         <style>
             html, body {
@@ -90,7 +91,7 @@
     groundMaterial.diffuseTexture = groundTexture;
     ground.material = groundMaterial;
 
-    BABYLON.SceneLoader.ImportMesh("", "./dev/", "Wooden chair.obj", scene, function(newMeshes){
+    BABYLON.SceneLoader.ImportMesh("", "./dev/", "Stanford_Bunny_sample.stl", scene, function(newMeshes){
     newMeshes[0].scaling = new BABYLON.Vector3(0.01, 0.01, 0.01);        
     });
 
