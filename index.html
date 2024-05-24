@@ -98,8 +98,10 @@
         {width:5, height :5, subdivisions: 500, maxHeight: 1});
 
 
-    ground.material = new BABYLON.StandardMaterial("Ground Material", scene);
-    // ground.material.wireframe = true;
+    // ground.material = new BABYLON.StandardMaterial("Ground Material", scene);
+    const groundEOMat = new BABYLON.StandardMaterial();
+    ground.material = groundEOMat;
+    groundEOMat.emissiveTexture = new BABYLON.Texture('./dev/U_2023OCT26_NGA_GeoData_MaxarEOCL_40cm.tif')
 
     // BABYLON.SceneLoader.ImportMesh("", "./dev/", "Stanford_Bunny_sample.stl", scene, function(newMeshes){
     // newMeshes[0].scaling = new BABYLON.Vector3(0.01, 0.01, 0.01);        
