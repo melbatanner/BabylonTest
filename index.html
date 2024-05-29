@@ -94,13 +94,13 @@
     // const ground = BABYLON.MeshBuilder.CreateGroundFromHeightMap("gdhm", "textures/heightMap.png", {width:5, height :5, subdivisions: 500, maxHeight: 1});
     // });
 
-    var ground = new BABYLON.MeshBuilder.CreateGroundFromHeightMap("ground", './dev/PR_height_map2.png', 
+    var ground = new BABYLON.MeshBuilder.CreateGroundFromHeightMap("ground", './dev/g5k_hm_re2.png', 
         {width:20, height :20, subdivisions: 500, maxHeight: 1});
 
 
     // ground.material = new BABYLON.StandardMaterial("Ground Material", scene);
     var groundEOMat = new BABYLON.StandardMaterial();
-    groundEOMat.emissiveTexture = new BABYLON.Texture('./dev/PR_texture.jpg')
+    groundEOMat.emissiveTexture = new BABYLON.Texture('./dev/g5k_texture2.jpg')
     ground.material = groundEOMat;
 
     // BABYLON.SceneLoader.ImportMesh("", "./dev/", "Stanford_Bunny_sample.stl", scene, function(newMeshes){
