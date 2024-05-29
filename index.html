@@ -29,20 +29,20 @@
 
             html, body {
                 overflow: hidden;
-                width: 100%;
+                width: 80%;
                 height: 100%;
                 margin: 0;
                 padding: 0;
             }
 
             #renderCanvas {
-                width: 100%;
+                width: 80%;
                 height: 100%;
                 touch-action: none;
             }
             
             #canvasZone {
-                width: 100%;
+                width: 80%;
                 height: 100%;
             }
         </style>
@@ -102,7 +102,8 @@
 };
 
         function updateLight() {
-            var intensity = document.getElementById("light");
+            let elements = document.getElementsByName("lighting");
+            var intensity = elements[0].value;
             console.log("intensity is ", intensity);
             return intensity;
         }
