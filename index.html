@@ -22,8 +22,8 @@
         <script src="https://cdn.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
         <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
         <script src="https://cdn.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
-        <script src="./js/babylon.objFileLoader.js"></script>
-        <script src="./js/babylon.stlFileLoader.js"></script>
+        <!-- <script src="./js/babylon.objFileLoader.js"></script>
+        <script src="./js/babylon.stlFileLoader.js"></script> -->
 
         <style>
             html, body {
@@ -78,24 +78,8 @@
     // Default intensity is 1. Let's dim the light a small amount
     light.intensity = 0.3;
 
-    // Our built-in 'sphere' shape.
-    // var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 2, segments: 32}, scene);
-
-    // Move the sphere upward 1/2 its height
-    // sphere.position.y = 1;
-
-    // Our built-in 'ground' shape.
-    // var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
-    // const groundMaterial = new BABYLON.StandardMaterial("Ground Material", scene);
-    // let groundTexture = new BABYLON.Texture(Assets.textures.checkerboard_basecolor_png.rootUrl, scene);
-    // groundMaterial.diffuseTexture = groundTexture;
-    // ground.material = groundMaterial;
-
-    // const ground = BABYLON.MeshBuilder.CreateGroundFromHeightMap("gdhm", "textures/heightMap.png", {width:5, height :5, subdivisions: 500, maxHeight: 1});
-    // });
-
     var ground = new BABYLON.MeshBuilder.CreateGroundFromHeightMap("ground", './dev/G5k_x2.png', 
-        {width:20, height :20, subdivisions: 3000, maxHeight: 1});
+        {width:20, height :20, subdivisions: 2000, maxHeight: 1});
 
 
     // ground.material = new BABYLON.StandardMaterial("Ground Material", scene);
@@ -103,35 +87,25 @@
     groundEOMat.emissiveTexture = new BABYLON.Texture('./dev/g5k_texture2.jpg')
     ground.material = groundEOMat;
 
-    // BABYLON.SceneLoader.ImportMesh("", "./dev/", "Stanford_Bunny_sample.stl", scene, function(newMeshes){
-    // newMeshes[0].scaling = new BABYLON.Vector3(0.01, 0.01, 0.01);        
-    // });
-
-    // BABYLON.SceneLoader.ImportMesh("", Assets.meshes.Yeti.rootUrl, Assets.meshes.Yeti.filename, scene, function(newMeshes){
-    // newMeshes[0].scaling = new BABYLON.Vector3(0.1, 0.1, 0.1); 
-    // });
-
     return scene;
 };
-                window.initFunction = async function() {
-                    
-                    
-                    
-                    var asyncEngineCreation = async function() {
-                        try {
-                        return createDefaultEngine();
-                        } catch(e) {
-                        console.log("the available createEngine function failed. Creating the default engine instead");
-                        return createDefaultEngine();
-                        }
-                    }
+        window.initFunction = async function() {
+                                    
+            var asyncEngineCreation = async function() {
+                try {
+                    return createDefaultEngine();
+                } catch(e) {
+                    console.log("the available createEngine function failed. Creating the default engine instead");
+                    return createDefaultEngine();
+                }
+            }
 
-                    window.engine = await asyncEngineCreation();
-        if (!engine) throw 'engine should not be null.';
-        startRenderLoop(engine, canvas);
-        window.scene = createScene();};
-        initFunction().then(() => {sceneToRender = scene                    
-        });
+            window.engine = await asyncEngineCreation();
+            if (!engine) throw 'engine should not be null.';
+            startRenderLoop(engine, canvas);
+            window.scene = createScene();};
+            initFunction().then(() => {sceneToRender = scene}
+        );
 
         // Resize
         window.addEventListener("resize", function () {
