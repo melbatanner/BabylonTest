@@ -102,9 +102,8 @@
 };
 
         function updateLight() {
-            let elements = document.getElementsByName("lighting");
-            var intensity = elements[0].value;
-            console.log("intensity is ", intensity);
+            let intensity = document.getElementById("light");
+            console.log("intensity is ", intensity.value);
             // Set the light intensity to the input value  
             window.scene.lights[0].intensity = intensity;
             return intensity;
