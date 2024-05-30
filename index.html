@@ -89,13 +89,13 @@
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
     light.intensity = 0.1;    
 
-    var ground = new BABYLON.MeshBuilder.CreateGroundFromHeightMap("ground", './dev/G5k_x2.png', 
+    var ground = new BABYLON.MeshBuilder.CreateGroundFromHeightMap("ground", './dev/PR_off_sc_terr.png', 
         {width:20, height :20, subdivisions: 2000, maxHeight: 1});
 
 
     // ground.material = new BABYLON.StandardMaterial("Ground Material", scene);
     var groundEOMat = new BABYLON.StandardMaterial();
-    groundEOMat.emissiveTexture = new BABYLON.Texture('./dev/g5k_texture2.jpg')
+    groundEOMat.emissiveTexture = new BABYLON.Texture('./dev/PR_texture2.jpg')
     ground.material = groundEOMat;
 
     return scene;
