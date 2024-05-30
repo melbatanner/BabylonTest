@@ -72,6 +72,7 @@
         var engine = null;
         var scene = null;
         var sceneToRender = null;
+        var light = null;
         var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true,  disableWebGL2Support: false}); };
         var createScene = function () {
     // This creates a basic Babylon Scene object (non-mesh)
@@ -86,7 +87,8 @@
 
     // Default intensity is 1. Let's dim the light a small amount
     // light.intensity = 0.3;
-    var myLight = updateLight(scene);
+    var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+    updateLight(scene);
 
     var ground = new BABYLON.MeshBuilder.CreateGroundFromHeightMap("ground", './dev/G5k_x2.png', 
         {width:20, height :20, subdivisions: 2000, maxHeight: 1});
@@ -100,13 +102,20 @@
     return scene;
 };
 
-        function updateLight(theScene) {
+        function updateLight(scene) {
             let elements = document.getElementsByName("lighting");
             var intensity = elements[0].value;
             console.log("intensity is ", intensity);
             // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-            var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), theScene);
-            light.intensity = intensity;
+            console.log("scene = ", scene);
+            if (window.scene == null){
+                scene.lights[0].intensity = intensity;                
+            }
+            else{
+                console.log("window scene = ", window.scene);         
+                console.log("scene light = ", window.scene.lights[0]);       
+                window.scene.lights[0].intensity = intensity;
+            }
             return intensity;
         }
 
