@@ -95,8 +95,8 @@
             for (var index = 0; index < scene.meshes.length; index++){
                 console.log("mesh = ", scene.meshes[index]);
                 let thisMesh = scene.meshes[index];
-                console.log("subdivsion x = ", thisMesh._subdivisionsX)
-                console.log("subdivsion y = ", thisMesh._subdivisionsY)
+                console.log("subdivsion x = ", thisMesh._subdivisionsX);
+                console.log("subdivsion y = ", thisMesh._subdivisionsY);
                 if (thisMesh.submeshes != null){
                     for (var j = 0; j < thisMesh.submeshes.length; j++){
                         console.log("submesh = ", thisMesh.submeshes[j]);
@@ -123,6 +123,8 @@
             window.scene.lights[0].intensity = intensity.value;
             window.scene.meshes[0]._subdivisionsX = 2000;
             window.scene.meshes[0]._subdivisionsY = 2000;
+            console.log("subdivsion x = ", window.scene.meshes[0]._subdivisionsX);
+            console.log("subdivsion y = ", window.scene.meshes[0]._subdivisionsY);
             return intensity.value;
         }
 
