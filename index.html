@@ -75,37 +75,54 @@
         var light = null;
         var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true,  disableWebGL2Support: false}); };
         var createScene = function () {
-    // This creates a basic Babylon Scene object (non-mesh)
-    var scene = new BABYLON.Scene(engine);
+            // This creates a basic Babylon Scene object (non-mesh)
+            var scene = new BABYLON.Scene(engine);
 
-    var camera = new BABYLON.ArcRotateCamera("camera", 0, Math.PI/2, 10, BABYLON.Vector3.Zero(), scene);
+            var camera = new BABYLON.ArcRotateCamera("camera", 0, Math.PI/2, 10, BABYLON.Vector3.Zero(), scene);
 
-    // This attaches the camera to the canvas
-    camera.attachControl(canvas, true);
-
-
-    // This creates a light, aiming 0,1,0 - to the sky (non-mesh) 
-    // Default intensity is 1. Let's dim the light to .1 to start with
-    var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-    light.intensity = 0.1;    
-
-    var ground = new BABYLON.MeshBuilder.CreateGroundFromHeightMap("ground", './dev/terr_rescale.png', 
-        {width:20, height :20, subdivisions: 2000, maxHeight: 1});
+            // This attaches the camera to the canvas
+            camera.attachControl(canvas, true);
 
 
-    // ground.material = new BABYLON.StandardMaterial("Ground Material", scene);
-    var groundEOMat = new BABYLON.StandardMaterial();
-    groundEOMat.emissiveTexture = new BABYLON.Texture('./dev/EO_clip.jpg')
-    ground.material = groundEOMat;
+            // This creates a light, aiming 0,1,0 - to the sky (non-mesh) 
+            // Default intensity is 1. Let's dim the light to .1 to start with
+            var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+            light.intensity = 0.1;    
 
-    return scene;
-};
+            var ground = new BABYLON.MeshBuilder.CreateGroundFromHeightMap("ground", './dev/terr_rescale.png', 
+                {width:20, height :20, subdivisions: 1000, maxHeight: 1});
+            console.log("ground = ", ground);
+            for (var index = 0; index < scene.meshes.length; index++){
+                console.log("mesh = ", scene.meshes[index]);
+                let thisMesh = scene.meshes[index];
+                console.log("subdivsion x = ", thisMesh._subdivisionsX)
+                console.log("subdivsion y = ", thisMesh._subdivisionsY)
+                if (thisMesh.submeshes != null){
+                    for (var j = 0; j < thisMesh.submeshes.length; j++){
+                        console.log("submesh = ", thisMesh.submeshes[j]);
+                    }
+                }
+            }
+
+
+            // ground.material = new BABYLON.StandardMaterial("Ground Material", scene);
+            var groundEOMat = new BABYLON.StandardMaterial();
+            groundEOMat.emissiveTexture = new BABYLON.Texture('./dev/EO_clip.jpg')
+            ground.material = groundEOMat;
+            for (var index = 0; index < scene.materials.length; index++){
+                console.log("material = ", scene.materials[index]);
+            }            
+
+            return scene;
+        };
 
         function updateLight() {
             let intensity = document.getElementById("light");
             console.log("intensity is ", intensity.value);
             // Set the light intensity to the input value  
             window.scene.lights[0].intensity = intensity.value;
+            window.scene.meshes[0]._subdivisionsX = 2000;
+            window.scene.meshes[0]._subdivisionsY = 2000;
             return intensity.value;
         }
 
