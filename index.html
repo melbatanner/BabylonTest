@@ -54,6 +54,12 @@
         <option value="0.5">0.5</option>            
     </select>          
 
+    <select name="subdivisions" id="subdiv">
+        <option value="10">10</option>
+        <option value="100">100</option>
+        <option value="1000">1000</option>            
+    </select>  
+
     <button onclick="updateLight()" id="set">Set</button>
 
     <br><br>
@@ -121,8 +127,10 @@
             console.log("intensity is ", intensity.value);
             // Set the light intensity to the input value  
             window.scene.lights[0].intensity = intensity.value;
-            window.scene.meshes[0]._subdivisionsX = 100;
-            window.scene.meshes[0]._subdivisionsY = 100;
+
+            let subdivs = document.getElementById("subdiv");
+            window.scene.meshes[0]._subdivisionsX = subdivs.value;
+            window.scene.meshes[0]._subdivisionsY = subdivs.value;
             console.log("subdivsion x = ", window.scene.meshes[0]._subdivisionsX);
             console.log("subdivsion y = ", window.scene.meshes[0]._subdivisionsY);
             return intensity.value;
